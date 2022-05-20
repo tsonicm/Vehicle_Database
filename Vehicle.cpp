@@ -463,11 +463,14 @@ void Search(Vehicle vehicles[], int n) //Search function
     char header[155] = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
     char spacer[155] = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
     int choice;
+    std::string alegere;
     /// criterii
     std::string c_manufact = "-", c_model = "-", c_color = "-", c_vin = "-", c_plate = "-";
     int c_year = -1, c_weight = -1, c_engine = -1, c_seats = -1, c_power = -1;
     bool c_all = false;
 
+    do{
+    CLEAR();
     std::cout << "1. Search by year" << std::endl;
     std::cout << "2. Search by manufacturer" << std::endl;
     std::cout << "3. Search by model" << std::endl;
@@ -478,10 +481,9 @@ void Search(Vehicle vehicles[], int n) //Search function
     std::cout << "8. Search by engine" << std::endl;
     std::cout << "9. Search by power" << std::endl;
     std::cout << "10. Search by seats" << std::endl;
-    if(c_all)
+    if(c_all == false)
         std::cout << "11. Show entire list" << std::endl;
-    else
-        std::cout << "11. Don't show entire list" << std::endl;
+    else std::cout << "11. Don't show entire list" << std::endl;
 
     /// verificare + afisare criterii
     int c_active = 0;
@@ -562,9 +564,9 @@ void Search(Vehicle vehicles[], int n) //Search function
             break;
         case 11:
             if(c_all)
-                std::cout << "No longer showing the entire list." << std::endl; /// CU ROSU
+                std::cout << "\033[1;31m" << "No longer showing the entire list." << "\033[0m" << std::endl;
             else
-                std::cout << "Now showing the entire list." << std::endl; /// CU VERDE
+                std::cout << "\033[1;32m" << "Now showing the entire list." << "\033[0m" << std::endl;
 
             c_all = !c_all;
             break;
@@ -572,24 +574,114 @@ void Search(Vehicle vehicles[], int n) //Search function
             std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
 
+    bool exists = false;
+    if (c_active == 0 || c_all) exists = true; /// daca nu exista conditii SAU afisam toata lista, atunci exists = true
+    /// verificare cate masini indeplinesc conditia
+    for(int i = 0; i < n && exists == false; i++)
+    {
+        bool ok = true;
+        /// daca conditia e activa, verificare parametru in raport cu conditia
+        if(c_year != -1) if(c_year != vehicles[i].getYear()) ok = false;
+        if(c_manufact != "-") if(vehicles[i].getManufacturer().find(c_manufact) == std::string::npos) ok = false;
+        if(c_model != "-") if(vehicles[i].getModel().find(c_model) == std::string::npos) ok = false;
+        if(c_color != "-") if(vehicles[i].getColor().find(c_color) == std::string::npos) ok = false;
+        if(c_vin != "-") if(vehicles[i].getVIN().find(c_vin) == std::string::npos) ok = false;
+        if(c_plate != "-") if(vehicles[i].getPlate().find(c_plate) == std::string::npos) ok = false;
+        if(c_weight != -1) if(c_weight != vehicles[i].getWeight()) ok = false;
+        if(c_engine != -1) if(c_engine != vehicles[i].getEngine()) ok = false;
+        if(c_power != -1) if(c_power != vehicles[i].getPower()) ok = false;
+        if(c_seats != -1) if(c_seats != vehicles[i].getSeats()) ok = false;
 
-    /// verificare masini care indeplinesc conditia
-    /// daca >0, afisare header, spacer si restul
+        /// daca toate conditiile sunt adevarate, inseamna ca exista cel putin un vehicul de afisat
+        if(ok) exists = true;
+    }
+
+    /// daca exists = true, afisare header, spacer si restul
+    if(exists)
+    {
+        std::cout << "\033[1;35m" << spacer << std::endl << header << std::endl << spacer << std::endl << "\033[0m";
+        for (int i = 0; i < n; i++)
+        {
+            if(c_all) /// afisare cu toata lista
+            {
+                std::string rosu_verde;
+                std::cout << "\033[1;35m" << "| " << "\033[0m" << "\033[1;34m" << std::setw(2) << i+1 << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_year != -1) if(c_year != vehicles[i].getYear()) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(4) << vehicles[i].getYear() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_manufact != "-") if(vehicles[i].getManufacturer().find(c_manufact) == std::string::npos) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(14) << vehicles[i].getManufacturer() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_model != "-") if(vehicles[i].getModel().find(c_model) == std::string::npos) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(14) << vehicles[i].getModel() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_color != "-") if(vehicles[i].getColor().find(c_color) == std::string::npos) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(19) << vehicles[i].getColor() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_vin != "-") if(vehicles[i].getVIN().find(c_vin) == std::string::npos) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(16) << vehicles[i].getVIN() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_plate != "-") if(vehicles[i].getPlate().find(c_plate) == std::string::npos) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(17) << vehicles[i].getPlate() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_weight != -1) if(c_weight != vehicles[i].getWeight()) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(8) << vehicles[i].getWeight() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_engine != -1) if(c_engine != vehicles[i].getEngine()) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(8) << vehicles[i].getEngine() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_power != -1) if(c_power != vehicles[i].getPower()) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(7) << vehicles[i].getPower() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                rosu_verde = "\033[1;34m";
+                if(c_seats != -1) if(c_seats != vehicles[i].getSeats()) rosu_verde = "\033[1;31m"; else rosu_verde = "\033[1;32m";
+                std::cout << rosu_verde << std::setw(9) << vehicles[i].getSeats() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+
+                std::cout << std::endl << "\033[1;35m" << spacer << "\033[0m" << std::endl;
+            }
+
+            else /// afisare doar vehiculele care indeplinesc criteriile
+            {
+                bool ok = true;
+                /// daca conditia e activa, verificare parametru in raport cu conditia
+                if(c_year != -1) if(c_year != vehicles[i].getYear()) ok = false;
+                if(c_manufact != "-") if(vehicles[i].getManufacturer().find(c_manufact) == std::string::npos) ok = false;
+                if(c_model != "-") if(vehicles[i].getModel().find(c_model) == std::string::npos) ok = false;
+                if(c_color != "-") if(vehicles[i].getColor().find(c_color) == std::string::npos) ok = false;
+                if(c_vin != "-") if(vehicles[i].getVIN().find(c_vin) == std::string::npos) ok = false;
+                if(c_plate != "-") if(vehicles[i].getPlate().find(c_plate) == std::string::npos) ok = false;
+                if(c_weight != -1) if(c_weight != vehicles[i].getWeight()) ok = false;
+                if(c_engine != -1) if(c_engine != vehicles[i].getEngine()) ok = false;
+                if(c_power != -1) if(c_power != vehicles[i].getPower()) ok = false;
+                if(c_seats != -1) if(c_seats != vehicles[i].getSeats()) ok = false;
+
+                /// daca toate conditiile sunt adevarate, inseamna ca acest vehicul poate fi afisat
+                if(ok)
+                {
+                    std::cout << "\033[1;35m" << "| " << "\033[0m" << "\033[1;34m" << std::setw(2) << i+1 << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+                    std::cout << vehicles[i] << '\n';
+                    std::cout << "\033[1;35m" << spacer << "\033[0m" << std::endl;
+                }
+            }
+        }
+    }
     /// altfel, afisare "No entry found based on active criteria."
-    /*
-    os << "\033[1;34m" << std::setw(4) << v.getYear() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(14) << v.getManufacturer() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(14) << v.getModel() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(19) << v.getColor() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(16) << v.getVIN() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(17) << v.getPlate() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(8) << v.getWeight() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(8) << v.getEngine() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(7) << v.getPower() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(9) << v.getSeats() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    return os;
-    */
+    else
+        std::cout << std::endl << "\033[1;31m" << "No entry found based on active criteria." << "\033[0m" << std::endl;
 
+    std::cout << std::endl << std::endl << "Do you wish to add/modify criteria? (" << "\033[1;32m" << "Y" << "\033[0m" << "/" << "\033[1;31m" << "N" << "\033[0m" << "): ";
+    std::cin >> alegere;
+    }while(alegere == "Y");
 }
 
 // Todokete setsuna sa ni wa
@@ -598,6 +690,4 @@ void Search(Vehicle vehicles[], int n) //Search function
 // baraka obamitai
 // if cute and funny is cunny
 // then funny and cute is fute
-// e 3 dimineata am stat degeaba pana acum nu mai pot nu mai pot
-// acum e 4:44 dimineata, urmeaza sa pun pe github ce am momentam
-// termin mai tarziu
+// cnv sa stearga aceste comentarii cand are timp
