@@ -61,7 +61,7 @@ std::string Vehicle::getColor() //Get color
 std::string Vehicle::getVIN() //Get VIN
 {
     return vin;
-}   
+}
 
 std::string Vehicle::getPlate() //Get plate
 {
@@ -149,13 +149,13 @@ std::ostream& operator<< (std::ostream& os, Vehicle& v) //Overloaded output oper
     os << "\033[1;34m" << std::setw(4) << v.getYear() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
     os << "\033[1;34m" << std::setw(14) << v.getManufacturer() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
     os << "\033[1;34m" << std::setw(14) << v.getModel() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(20) << v.getColor() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(19) << v.getColor() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
     os << "\033[1;34m" << std::setw(16) << v.getVIN() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
     os << "\033[1;34m" << std::setw(17) << v.getPlate() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
     os << "\033[1;34m" << std::setw(8) << v.getWeight() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(9) << v.getEngine() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(6) << v.getPower() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
-    os << "\033[1;34m" << std::setw(10) << v.getSeats() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(8) << v.getEngine() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(7) << v.getPower() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(9) << v.getSeats() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
     return os;
 }
 
@@ -178,17 +178,17 @@ void Add(Vehicle vehicles[], int &n) //Add vehicle function
 {
     int year, weight, engine, power, seats;
     std::string manufacturer, model, color, vin, plate;
-    std::cout << "Introduceti datele noului autoturism: \n";
-    std::cout << "Anul fabricatiei: "; std::cin >> year;
-    std::cout << "Producator: "; std::cin >> manufacturer;
+    std::cout << "Write data for the new vehicle: \n";
+    std::cout << "Year: "; std::cin >> year;
+    std::cout << "Manufacturer: "; std::cin >> manufacturer;
     std::cout << "Model: "; std::cin >> model;
-    std::cout << "Culoare: "; std::cin >> color;
+    std::cout << "Color: "; std::cin >> color;
     std::cout << "VIN: "; std::cin >> vin;
-    std::cout << "Placa: "; std::cin >> plate;
-    std::cout << "Greutate: "; std::cin >> weight;
-    std::cout << "Cilindree: "; std::cin >> engine;
-    std::cout << "Putere: "; std::cin >> power;
-    std::cout << "Locuri: "; std::cin >> seats;
+    std::cout << "Plate: "; std::cin >> plate;
+    std::cout << "Weight: "; std::cin >> weight;
+    std::cout << "Engine: "; std::cin >> engine;
+    std::cout << "Power: "; std::cin >> power;
+    std::cout << "Seats: "; std::cin >> seats;
     vehicles[n] = Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats);
     n++;
 }
@@ -196,15 +196,15 @@ void Add(Vehicle vehicles[], int &n) //Add vehicle function
 void ModifyYear(Vehicle vehicles[], int n) //Modify year function
 {
     int choice, year;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noul an fabricatiei: ";
+        std::cout << "Write the new year: ";
         std::cin >> year;
         vehicles[choice - 1].setYear(year);
     }
@@ -214,15 +214,15 @@ void ModifyManufacturer(Vehicle vehicles[], int n) //Modify manufacturer functio
 {
     int choice;
     std::string manufacturer;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noul producator: ";
+        std::cout << "Write the new manufacturer: ";
         std::cin >> manufacturer;
         vehicles[choice - 1].setManufacturer(manufacturer);
     }
@@ -232,15 +232,15 @@ void ModifyModel(Vehicle vehicles[], int n) //Modify model function
 {
     int choice;
     std::string model;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noul model: ";
+        std::cout << "Write the new model: ";
         std::cin >> model;
         vehicles[choice - 1].setModel(model);
     }
@@ -250,15 +250,15 @@ void ModifyColor(Vehicle vehicles[], int n) //Modify color function
 {
     int choice;
     std::string color;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noua culoare: ";
+        std::cout << "Write the new color: ";
         std::cin >> color;
         vehicles[choice - 1].setColor(color);
     }
@@ -268,15 +268,15 @@ void ModifyVIN(Vehicle vehicles[], int n) //Modify VIN function
 {
     int choice;
     std::string vin;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noul VIN: ";
+        std::cout << "Write the new VIN: ";
         std::cin >> vin;
         vehicles[choice - 1].setVIN(vin);
     }
@@ -286,15 +286,15 @@ void ModifyPlate(Vehicle vehicles[], int n) //Modify plate function
 {
     int choice;
     std::string plate;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noua placa: ";
+        std::cout << "Write the new plate: ";
         std::cin >> plate;
         vehicles[choice - 1].setPlate(plate);
     }
@@ -304,15 +304,15 @@ void ModifyWeight(Vehicle vehicles[], int n) //Modify weight function
 {
     int choice;
     int weight;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noua greutate: ";
+        std::cout << "Write the new weight: ";
         std::cin >> weight;
         vehicles[choice - 1].setWeight(weight);
     }
@@ -322,15 +322,15 @@ void ModifyEngine(Vehicle vehicles[], int n) //Modify engine function
 {
     int choice;
     int engine;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noul tip motor: ";
+        std::cout << "Write the new engine: ";
         std::cin >> engine;
         vehicles[choice - 1].setEngine(engine);
     }
@@ -340,15 +340,15 @@ void ModifyPower(Vehicle vehicles[], int n) //Modify power function
 {
     int choice;
     int power;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noua putere: ";
+        std::cout << "Write the new power: ";
         std::cin >> power;
         vehicles[choice - 1].setPower(power);
     }
@@ -358,15 +358,15 @@ void ModifySeats(Vehicle vehicles[], int n) //Modify seats function
 {
     int choice;
     int seats;
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice < 1 || choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Introduceti noua numarul de locuri: ";
+        std::cout << "Write the new number of seats: ";
         std::cin >> seats;
         vehicles[choice - 1].setSeats(seats);
     }
@@ -374,8 +374,8 @@ void ModifySeats(Vehicle vehicles[], int n) //Modify seats function
 
 void Print(Vehicle vehicles[], int n) //Print function
 {
-    char header[157] = "| ID |  An  |      Marca     |      Model     |        Culoare       |    Numar Sasiu    | Nr. Inmatriculare | Greutate | Cilindree | Putere | Nr. Locuri |";
-    char spacer[157] = "|====|======|================|================|======================|===================|===================|==========|===========|========|============|";
+    char header[155] = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
+    char spacer[155] = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
     std::cout << "\033[1;35m" << spacer << std::endl << header << std::endl << spacer << std::endl << "\033[0m";
     for (int i = 0; i < n; i++)
     {
@@ -434,7 +434,7 @@ void Modify(Vehicle vehicles[], int n) //Modify menu function
             ModifySeats(vehicles, n);
             break;
         default:
-            std::cout << "Invalid choice" << std::endl;
+            std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
 }
 
@@ -442,11 +442,11 @@ void Delete(Vehicle vehicles[], int &n) //Delete function
 {
     int choice;
     Print(vehicles, n);
-    std::cout << "Introduceti numarul autoturismului: ";
+    std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
     if (choice > n)
     {
-        std::cout << "Invalid choice" << std::endl;
+        std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
     else
     {
@@ -460,43 +460,144 @@ void Delete(Vehicle vehicles[], int &n) //Delete function
 
 void Search(Vehicle vehicles[], int n) //Search function
 {
-    char header[157] = "| ID |  An  |      Marca     |      Model     |        Culoare       |    Numar Sasiu    | Nr. Inmatriculare | Greutate | Cilindree | Putere | Nr. Locuri |";
-    char spacer[157] = "|====|======|================|================|======================|===================|===================|==========|===========|========|============|";
+    char header[155] = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
+    char spacer[155] = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
     int choice;
-    std::string vin;
-    std::cout << "1. Search by VIN" << std::endl;
-    std::cout << "2. Search by plate" << std::endl;
-    std::cout << "Enter your choice: ";
+    /// criterii
+    std::string c_manufact = "-", c_model = "-", c_color = "-", c_vin = "-", c_plate = "-";
+    int c_year = -1, c_weight = -1, c_engine = -1, c_seats = -1, c_power = -1;
+    bool c_all = false;
+
+    std::cout << "1. Search by year" << std::endl;
+    std::cout << "2. Search by manufacturer" << std::endl;
+    std::cout << "3. Search by model" << std::endl;
+    std::cout << "4. Search by color" << std::endl;
+    std::cout << "5. Search by VIN" << std::endl;
+    std::cout << "6. Search by plate" << std::endl;
+    std::cout << "7. Search by weight" << std::endl;
+    std::cout << "8. Search by engine" << std::endl;
+    std::cout << "9. Search by power" << std::endl;
+    std::cout << "10. Search by seats" << std::endl;
+    if(c_all)
+        std::cout << "11. Show entire list" << std::endl;
+    else
+        std::cout << "11. Don't show entire list" << std::endl;
+
+    /// verificare + afisare criterii
+    int c_active = 0;
+    if(c_manufact != "-") c_active++;
+    if(c_model != "-") c_active++;
+    if(c_color != "-") c_active++;
+    if(c_vin != "-") c_active++;
+    if(c_plate != "-") c_active++;
+    if(c_year != -1) c_active++;
+    if(c_weight != -1) c_active++;
+    if(c_engine != -1) c_active++;
+    if(c_power != -1) c_active++;
+    if(c_seats != -1) c_active++;
+    if(c_all != false) c_active++;
+
+    if(c_active > 1)
+        std::cout << std::endl << "There are " << c_active << " active criteria right now:" << std::endl;
+    else if (c_active == 1)
+        std::cout << std::endl << "There is " << c_active << " active criteria right now:" << std::endl;
+    else
+        std::cout << std::endl << "There are no active criteria right now." << std::endl;
+
+    if(c_year != -1) std::cout << "Year: " << c_year << std::endl;
+    if(c_manufact != "-") std::cout << "Manufacturer: " << c_manufact << std::endl;
+    if(c_model != "-") std::cout << "Model: " << c_model << std::endl;
+    if(c_color != "-") std::cout << "Color: " << c_color << std::endl;
+    if(c_vin != "-") std::cout << "VIN: " << c_vin << std::endl;
+    if(c_plate != "-") std::cout << "Plate: " << c_plate << std::endl;
+    if(c_weight != -1) std::cout << "Weight: " << c_weight << std::endl;
+    if(c_engine != -1) std::cout << "Engine: " << c_engine << std::endl;
+    if(c_power != -1) std::cout << "Power: " << c_power << std::endl;
+    if(c_seats != -1) std::cout << "Seats: " << c_seats << std::endl;
+    if(c_all != false) std::cout << "Showing the entire list!" << std::endl;
+
+    std::cout << std::endl << "Enter your choice: ";
     std::cin >> choice;
     switch (choice)
     {
         case 1:
-            std::cout << "Introduceti VIN-ul: ";
-            std::cin >> vin;
-            for (int i = 0; i < n; i++)
-            {
-                if (vehicles[i].getVIN() == vin)
-                {
-                    std::cout << "Autoturismul gasit: " << std::endl << spacer << std::endl << header << std::endl << spacer << std::endl 
-                                                        <<"| " << std::setw(2) << i+1 << " | " << vehicles[i] << std::endl << spacer << std::endl;
-                    break;
-                }
-            }
+            std::cout << "Input year (input " << "\033[1;31m" << "-1" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_year;
             break;
         case 2:
-            std::cout << "Introduceti placa: ";
-            std::cin >> vin;
-            for (int i = 0; i < n; i++)
-            {
-                if (vehicles[i].getPlate() == vin)
-                {
-                    std::cout << "Autoturismul gasit: " << std::endl << spacer << std::endl << header << std::endl << spacer << std::endl 
-                                                        <<"| " << std::setw(2) << i+1 << " | " << vehicles[i] << std::endl << spacer << std::endl;
-                    break;
-                }
-            }
+            std::cout << "Input manufacturer (input " << "\033[1;31m" << "-" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_manufact;
+            break;
+        case 3:
+            std::cout << "Input model (input " << "\033[1;31m" << "-" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_model;
+            break;
+        case 4:
+            std::cout << "Input color (input " << "\033[1;31m" << "-" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_color;
+            break;
+        case 5:
+            std::cout << "Input VIN (input " << "\033[1;31m" << "-" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_vin;
+            break;
+        case 6:
+            std::cout << "Input plate (input " << "\033[1;31m" << "-" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_plate;
+            break;
+        case 7:
+            std::cout << "Input weight (input " << "\033[1;31m" << "-1" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_weight;
+            break;
+        case 8:
+            std::cout << "Input engine (input " << "\033[1;31m" << "-1" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_engine;
+            break;
+        case 9:
+            std::cout << "Input power (input " << "\033[1;31m" << "-1" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_power;
+            break;
+        case 10:
+            std::cout << "Input seats (input " << "\033[1;31m" << "-1" << "\033[0m" << " to disable this criteria): ";
+            std::cin >> c_seats;
+            break;
+        case 11:
+            if(c_all)
+                std::cout << "No longer showing the entire list." << std::endl; /// CU ROSU
+            else
+                std::cout << "Now showing the entire list." << std::endl; /// CU VERDE
+
+            c_all = !c_all;
             break;
         default:
-            std::cout << "Invalid choice" << std::endl;
+            std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
-}   
+
+
+    /// verificare masini care indeplinesc conditia
+    /// daca >0, afisare header, spacer si restul
+    /// altfel, afisare "No entry found based on active criteria."
+    /*
+    os << "\033[1;34m" << std::setw(4) << v.getYear() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(14) << v.getManufacturer() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(14) << v.getModel() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(19) << v.getColor() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(16) << v.getVIN() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(17) << v.getPlate() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(8) << v.getWeight() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(8) << v.getEngine() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(7) << v.getPower() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    os << "\033[1;34m" << std::setw(9) << v.getSeats() << std::setw(0) << "\033[0m" << "\033[1;35m" << " | " << "\033[0m";
+    return os;
+    */
+
+}
+
+// Todokete setsuna sa ni wa
+// Namae wo tsukeyou ka "Snow halation"
+// sussy commentary
+// baraka obamitai
+// if cute and funny is cunny
+// then funny and cute is fute
+// e 3 dimineata am stat degeaba pana acum nu mai pot nu mai pot
+// acum e 4:44 dimineata, urmeaza sa pun pe github ce am momentam
+// termin mai tarziu

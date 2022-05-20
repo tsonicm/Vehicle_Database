@@ -28,38 +28,38 @@ int main()
         {
             case 1:
                 Add(vehicles, n);
-                std::cout << "Apasa" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "pentru a continua...";
+                std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
                 break;
             case 2:
                 Modify(vehicles, n);
-                std::cout << "Apasa" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "pentru a continua...";
+                std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
                 break;
             case 3:
                 Delete(vehicles, n);
-                std::cout << "Apasa" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "pentru a continua...";
+                std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
                 break;
             case 4:
                 Search(vehicles, n);
-                std::cout << "Apasa" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "pentru a continua...";
+                std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
                 break;
             case 5:
                 Print(vehicles, n);
-                std::cout << "Apasa" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "pentru a continua...";
+                std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
                 break;
             case 6:
                 break;
             default:
-                std::cout << "\033[1;31m" << "Invalid choice" << "\033[0m" << std::endl;
+                std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
                 fflush(stdin);
                 getchar();
                 break;
