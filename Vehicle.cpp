@@ -374,8 +374,8 @@ void ModifySeats(Vehicle vehicles[], int n) //Modify seats function
 
 void Print(Vehicle vehicles[], int n) //Print function
 {
-    char header[155] = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
-    char spacer[155] = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
+    std::string header = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
+    std::string spacer = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
     std::cout << "\033[1;35m" << spacer << std::endl << header << std::endl << spacer << std::endl << "\033[0m";
     for (int i = 0; i < n; i++)
     {
@@ -460,8 +460,8 @@ void Delete(Vehicle vehicles[], int &n) //Delete function
 
 void Search(Vehicle vehicles[], int n) //Search function
 {
-    char header[155] = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
-    char spacer[155] = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
+    std::string header = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
+    std::string spacer = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
     int choice;
     std::string alegere;
     /// criterii
@@ -681,7 +681,7 @@ void Search(Vehicle vehicles[], int n) //Search function
 
     std::cout << std::endl << std::endl << "Do you wish to add/modify criteria? (" << "\033[1;32m" << "Y" << "\033[0m" << "/" << "\033[1;31m" << "N" << "\033[0m" << "): ";
     std::cin >> alegere;
-    }while(alegere == "Y");
+    }while(alegere == "Y" || alegere == "y");
 }
 
 // Todokete setsuna sa ni wa
