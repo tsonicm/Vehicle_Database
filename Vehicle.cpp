@@ -174,7 +174,7 @@ std::istream& operator>> (std::istream& is, Vehicle& v) //Overloaded input opera
     return is;
 }
 
-void Add(Vehicle vehicles[], int &n) //Add vehicle function
+void Add(std::vector<Vehicle> vehicles, int &n) //Add vehicle function
 {
     int year, weight, engine, power, seats;
     std::string manufacturer, model, color, vin, plate;
@@ -193,7 +193,7 @@ void Add(Vehicle vehicles[], int &n) //Add vehicle function
     n++;
 }
 
-void ModifyYear(Vehicle vehicles[], int n) //Modify year function
+void ModifyYear(std::vector<Vehicle> vehicles, int n) //Modify year function
 {
     int choice, year;
     std::cout << "Write the index of the vehicle from the table above: ";
@@ -210,7 +210,7 @@ void ModifyYear(Vehicle vehicles[], int n) //Modify year function
     }
 }
 
-void ModifyManufacturer(Vehicle vehicles[], int n) //Modify manufacturer function
+void ModifyManufacturer(std::vector<Vehicle> vehicles, int n) //Modify manufacturer function
 {
     int choice;
     std::string manufacturer;
@@ -228,7 +228,7 @@ void ModifyManufacturer(Vehicle vehicles[], int n) //Modify manufacturer functio
     }
 }
 
-void ModifyModel(Vehicle vehicles[], int n) //Modify model function
+void ModifyModel(std::vector<Vehicle> vehicles, int n) //Modify model function
 {
     int choice;
     std::string model;
@@ -246,7 +246,7 @@ void ModifyModel(Vehicle vehicles[], int n) //Modify model function
     }
 }
 
-void ModifyColor(Vehicle vehicles[], int n) //Modify color function
+void ModifyColor(std::vector<Vehicle> vehicles, int n) //Modify color function
 {
     int choice;
     std::string color;
@@ -264,7 +264,7 @@ void ModifyColor(Vehicle vehicles[], int n) //Modify color function
     }
 }
 
-void ModifyVIN(Vehicle vehicles[], int n) //Modify VIN function
+void ModifyVIN(std::vector<Vehicle> vehicles, int n) //Modify VIN function
 {
     int choice;
     std::string vin;
@@ -282,7 +282,7 @@ void ModifyVIN(Vehicle vehicles[], int n) //Modify VIN function
     }
 }
 
-void ModifyPlate(Vehicle vehicles[], int n) //Modify plate function
+void ModifyPlate(std::vector<Vehicle> vehicles, int n) //Modify plate function
 {
     int choice;
     std::string plate;
@@ -300,7 +300,7 @@ void ModifyPlate(Vehicle vehicles[], int n) //Modify plate function
     }
 }
 
-void ModifyWeight(Vehicle vehicles[], int n) //Modify weight function
+void ModifyWeight(std::vector<Vehicle> vehicles, int n) //Modify weight function
 {
     int choice;
     int weight;
@@ -318,7 +318,7 @@ void ModifyWeight(Vehicle vehicles[], int n) //Modify weight function
     }
 }
 
-void ModifyEngine(Vehicle vehicles[], int n) //Modify engine function
+void ModifyEngine(std::vector<Vehicle> vehicles, int n) //Modify engine function
 {
     int choice;
     int engine;
@@ -336,7 +336,7 @@ void ModifyEngine(Vehicle vehicles[], int n) //Modify engine function
     }
 }
 
-void ModifyPower(Vehicle vehicles[], int n) //Modify power function
+void ModifyPower(std::vector<Vehicle> vehicles, int n) //Modify power function
 {
     int choice;
     int power;
@@ -354,7 +354,7 @@ void ModifyPower(Vehicle vehicles[], int n) //Modify power function
     }
 }
 
-void ModifySeats(Vehicle vehicles[], int n) //Modify seats function
+void ModifySeats(std::vector<Vehicle> vehicles, int n) //Modify seats function
 {
     int choice;
     int seats;
@@ -372,7 +372,7 @@ void ModifySeats(Vehicle vehicles[], int n) //Modify seats function
     }
 }
 
-void Print(Vehicle vehicles[], int n) //Print function
+void Print(std::vector<Vehicle> vehicles, int n) //Print function
 {
     std::string header = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
     std::string spacer = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";
@@ -385,7 +385,7 @@ void Print(Vehicle vehicles[], int n) //Print function
     }
 }
 
-void Modify(Vehicle vehicles[], int n) //Modify menu function
+void Modify(std::vector<Vehicle> vehicles, int n) //Modify menu function
 {
     int choice;
     Print(vehicles, n);
@@ -438,7 +438,7 @@ void Modify(Vehicle vehicles[], int n) //Modify menu function
     }
 }
 
-void Delete(Vehicle vehicles[], int &n) //Delete function
+void Delete(std::vector<Vehicle> vehicles, int &n) //Delete function
 {
     int choice;
     Print(vehicles, n);
@@ -458,7 +458,7 @@ void Delete(Vehicle vehicles[], int &n) //Delete function
     }
 }
 
-void Search(Vehicle vehicles[], int n) //Search function
+void Search(std::vector<Vehicle> vehicles, int n) //Search function
 {
     std::string header = "| ID | Year |  Manufacturer  |      Model     |        Color        |        VIN        |       Plate       |  Weight  |  Engine  |  Power  |   Seats   |";
     std::string spacer = "|====|======|================|================|=====================|===================|===================|==========|==========|=========|===========|";

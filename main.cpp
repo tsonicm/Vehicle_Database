@@ -3,13 +3,15 @@
 int main()
 {
     int n = 0;
-    Vehicle vehicles[256];
+    std::vector<Vehicle> vehicles;
     std::ifstream fIn;
     fIn.open("Database.txt");
     fIn >> n;
+    Vehicle v;
     for (int i = 0; i < n; i++)
     {
-        fIn >> vehicles[i];
+        fIn >> v;
+        vehicles.push_back(v);
     }
     fIn.close();
     int choice;

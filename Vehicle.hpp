@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string.h>
+#include <vector>
 
 class Vehicle
 {
