@@ -444,7 +444,7 @@ void Delete(std::vector<Vehicle> vehicles, int &n) //Delete function
     Print(vehicles, n);
     std::cout << "Write the index of the vehicle from the table above: ";
     std::cin >> choice;
-    if (choice > n)
+    if (choice > n || choice < 1)
     {
         std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
     }
