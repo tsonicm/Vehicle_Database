@@ -191,7 +191,6 @@ void Add(std::vector<Vehicle>& vehicles, int &n) //Add vehicle function
     std::cout << "Seats: "; std::cin >> seats;
     vehicles.push_back(Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats));
     //vehicles[n] = Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats);
-    n++;
 }
 
 void ModifyYear(std::vector<Vehicle> vehicles, int n) //Modify year function
@@ -685,10 +684,14 @@ void Search(std::vector<Vehicle> vehicles, int n) //Search function
     }while(alegere == "Y" || alegere == "y");
 }
 
-// Todokete setsuna sa ni wa
-// Namae wo tsukeyou ka "Snow halation"
-// sussy commentary
-// baraka obamitai
-// if cute and funny is cunny
-// then funny and cute is fute
-// cnv sa stearga aceste comentarii cand are timp
+void WriteDB(std::vector<Vehicle> &vehicles, int n)
+{
+    std::ofstream fOut;
+    fOut.open("Database.txt");
+    fOut << n << std::endl;
+    for (int i = 0; i < n; i++)
+    {
+        fOut << vehicles[i].getYear() << " " << vehicles[i].getManufacturer() << " " << vehicles[i].getModel() << " " << vehicles[i].getColor() << " " << vehicles[i].getVIN() << " " << vehicles[i].getPlate() << " " << vehicles[i].getWeight() << " " << vehicles[i].getEngine() << " " << vehicles[i].getPower() << " " << vehicles[i].getSeats() << std::endl;
+    }
+    fOut.close();
+}

@@ -33,32 +33,38 @@ int main()
                 std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
+                WriteDB(vehicles, n);
                 break;
             case 2:
                 Modify(vehicles, n);
                 std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
+                WriteDB(vehicles, n);
                 break;
             case 3:
                 Delete(vehicles, n);
                 std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
+                WriteDB(vehicles, n);
                 break;
             case 4:
                 Search(vehicles, n);
                 std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
+                WriteDB(vehicles, n);
                 break;
             case 5:
                 Print(vehicles, n);
                 std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
+                WriteDB(vehicles, n);
                 break;
             case 6:
+                WriteDB(vehicles, n);
                 break;
             default:
                 std::cout << "\033[1;31m" << "Invalid choice!" << "\033[0m" << std::endl;
@@ -66,15 +72,6 @@ int main()
                 getchar();
                 break;
         }
-    } 
-    while (choice != 6);
-    std::ofstream fOut;
-    fOut.open("Database.txt");
-    fOut << n << std::endl;
-    for (int i = 0; i < n; i++)
-    {
-        fOut << vehicles[i].getYear() << " " << vehicles[i].getManufacturer() << " " << vehicles[i].getModel() << " " << vehicles[i].getColor() << " " << vehicles[i].getVIN() << " " << vehicles[i].getPlate() << " " << vehicles[i].getWeight() << " " << vehicles[i].getEngine() << " " << vehicles[i].getPower() << " " << vehicles[i].getSeats() << std::endl;
-    }
-    fOut.close();
+    } while (choice != 6);
     return 0;
 }
