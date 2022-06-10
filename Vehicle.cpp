@@ -191,7 +191,6 @@ void Add(std::vector<Vehicle>& vehicles, int &n) //Add vehicle function
     std::cout << "Seats: "; std::cin >> seats;
     vehicles.push_back(Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats));
     n++;
-    //vehicles[n] = Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats);
 }
 
 void ModifyYear(std::vector<Vehicle>& vehicles, int n) //Modify year function
