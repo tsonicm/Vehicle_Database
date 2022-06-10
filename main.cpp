@@ -66,7 +66,8 @@ int main()
                 getchar();
                 break;
         }
-    } while (choice != 6);
+    } 
+    while (choice != 6);
     std::ofstream fOut;
     fOut.open("Database.txt");
     fOut << n << std::endl;

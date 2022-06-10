@@ -174,7 +174,7 @@ std::istream& operator>> (std::istream& is, Vehicle& v) //Overloaded input opera
     return is;
 }
 
-void Add(std::vector<Vehicle> vehicles, int &n) //Add vehicle function
+void Add(std::vector<Vehicle>& vehicles, int &n) //Add vehicle function
 {
     int year, weight, engine, power, seats;
     std::string manufacturer, model, color, vin, plate;
@@ -189,7 +189,8 @@ void Add(std::vector<Vehicle> vehicles, int &n) //Add vehicle function
     std::cout << "Engine: "; std::cin >> engine;
     std::cout << "Power: "; std::cin >> power;
     std::cout << "Seats: "; std::cin >> seats;
-    vehicles[n] = Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats);
+    vehicles.push_back(Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats));
+    //vehicles[n] = Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats);
     n++;
 }
 
