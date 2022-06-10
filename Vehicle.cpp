@@ -190,10 +190,11 @@ void Add(std::vector<Vehicle>& vehicles, int &n) //Add vehicle function
     std::cout << "Power: "; std::cin >> power;
     std::cout << "Seats: "; std::cin >> seats;
     vehicles.push_back(Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats));
+    n++;
     //vehicles[n] = Vehicle(year, manufacturer, model, color, vin, plate, weight, engine, power, seats);
 }
 
-void ModifyYear(std::vector<Vehicle> vehicles, int n) //Modify year function
+void ModifyYear(std::vector<Vehicle>& vehicles, int n) //Modify year function
 {
     int choice, year;
     std::cout << "Write the index of the vehicle from the table above: ";
@@ -210,7 +211,7 @@ void ModifyYear(std::vector<Vehicle> vehicles, int n) //Modify year function
     }
 }
 
-void ModifyManufacturer(std::vector<Vehicle> vehicles, int n) //Modify manufacturer function
+void ModifyManufacturer(std::vector<Vehicle>& vehicles, int n) //Modify manufacturer function
 {
     int choice;
     std::string manufacturer;
@@ -228,7 +229,7 @@ void ModifyManufacturer(std::vector<Vehicle> vehicles, int n) //Modify manufactu
     }
 }
 
-void ModifyModel(std::vector<Vehicle> vehicles, int n) //Modify model function
+void ModifyModel(std::vector<Vehicle>& vehicles, int n) //Modify model function
 {
     int choice;
     std::string model;
@@ -246,7 +247,7 @@ void ModifyModel(std::vector<Vehicle> vehicles, int n) //Modify model function
     }
 }
 
-void ModifyColor(std::vector<Vehicle> vehicles, int n) //Modify color function
+void ModifyColor(std::vector<Vehicle>& vehicles, int n) //Modify color function
 {
     int choice;
     std::string color;
@@ -264,7 +265,7 @@ void ModifyColor(std::vector<Vehicle> vehicles, int n) //Modify color function
     }
 }
 
-void ModifyVIN(std::vector<Vehicle> vehicles, int n) //Modify VIN function
+void ModifyVIN(std::vector<Vehicle>& vehicles, int n) //Modify VIN function
 {
     int choice;
     std::string vin;
@@ -282,7 +283,7 @@ void ModifyVIN(std::vector<Vehicle> vehicles, int n) //Modify VIN function
     }
 }
 
-void ModifyPlate(std::vector<Vehicle> vehicles, int n) //Modify plate function
+void ModifyPlate(std::vector<Vehicle>& vehicles, int n) //Modify plate function
 {
     int choice;
     std::string plate;
@@ -300,7 +301,7 @@ void ModifyPlate(std::vector<Vehicle> vehicles, int n) //Modify plate function
     }
 }
 
-void ModifyWeight(std::vector<Vehicle> vehicles, int n) //Modify weight function
+void ModifyWeight(std::vector<Vehicle>& vehicles, int n) //Modify weight function
 {
     int choice;
     int weight;
@@ -318,7 +319,7 @@ void ModifyWeight(std::vector<Vehicle> vehicles, int n) //Modify weight function
     }
 }
 
-void ModifyEngine(std::vector<Vehicle> vehicles, int n) //Modify engine function
+void ModifyEngine(std::vector<Vehicle>& vehicles, int n) //Modify engine function
 {
     int choice;
     int engine;
@@ -336,7 +337,7 @@ void ModifyEngine(std::vector<Vehicle> vehicles, int n) //Modify engine function
     }
 }
 
-void ModifyPower(std::vector<Vehicle> vehicles, int n) //Modify power function
+void ModifyPower(std::vector<Vehicle>& vehicles, int n) //Modify power function
 {
     int choice;
     int power;
@@ -354,7 +355,7 @@ void ModifyPower(std::vector<Vehicle> vehicles, int n) //Modify power function
     }
 }
 
-void ModifySeats(std::vector<Vehicle> vehicles, int n) //Modify seats function
+void ModifySeats(std::vector<Vehicle>& vehicles, int n) //Modify seats function
 {
     int choice;
     int seats;
@@ -385,7 +386,7 @@ void Print(std::vector<Vehicle> vehicles, int n) //Print function
     }
 }
 
-void Modify(std::vector<Vehicle> vehicles, int n) //Modify menu function
+void Modify(std::vector<Vehicle>& vehicles, int n) //Modify menu function
 {
     int choice;
     Print(vehicles, n);
@@ -438,7 +439,7 @@ void Modify(std::vector<Vehicle> vehicles, int n) //Modify menu function
     }
 }
 
-void Delete(std::vector<Vehicle> vehicles, int &n) //Delete function
+void Delete(std::vector<Vehicle>& vehicles, int &n) //Delete function
 {
     int choice;
     Print(vehicles, n);
