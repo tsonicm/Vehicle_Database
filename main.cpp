@@ -61,7 +61,6 @@ int main()
                 std::cout << "Press" << "\033[1;32m" << " 'Enter' " << "\033[0m" << "to continue...";
                 fflush(stdin);
                 getchar();
-                WriteDB(vehicles, n);
                 break;
             case 6:
                 WriteDB(vehicles, n);
