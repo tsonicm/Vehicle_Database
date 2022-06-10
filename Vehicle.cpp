@@ -438,7 +438,7 @@ void Modify(std::vector<Vehicle> vehicles, int n) //Modify menu function
     }
 }
 
-void Delete(std::vector<Vehicle> vehicles, int &n) //Delete function
+void Delete(std::vector<Vehicle>& vehicles, int &n) //Delete function
 {
     int choice;
     Print(vehicles, n);
